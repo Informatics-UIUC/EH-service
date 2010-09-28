@@ -41,7 +41,7 @@ public class Consensus implements Serializable {
     String refChr;
     
     @Id 
-    @Column(name="SPECIES")
+    @Column(name="COMP_GEN")
     String species;
     
     @Id 
@@ -52,7 +52,7 @@ public class Consensus implements Serializable {
     @Column(name="END_BP")
     long endBp;
  
-	@Column(name="SPECIES_CHR", insertable=false, updatable=false)
+	@Column(name="COMP_CHR", insertable=false, updatable=false)
 	private String speciesChr;
 
 
