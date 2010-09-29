@@ -5,6 +5,9 @@
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/EvolutionHighway"/>
+<!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/EH_Rachel"/>-->
+<!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/nature08645"/>-->
+<!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/transcriptome"/>-->
 			<property name="javax.persistence.jdbc.user" value="gnome"/>
 			<property name="javax.persistence.jdbc.password" value="!gn0m3"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
