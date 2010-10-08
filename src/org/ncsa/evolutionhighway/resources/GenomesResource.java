@@ -18,7 +18,7 @@ import org.ncsa.evolutionhighway.entities.Genome;
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class GenomesResource {
 
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("EHService");
+    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("EHService");
     
     private List<String> getGenomesFromDB() {
         EntityManager em = emf.createEntityManager();
@@ -41,6 +41,6 @@ public class GenomesResource {
 
     @Path("{genomeId}")
     public GenomeResource getGenome(@PathParam("genomeId") String genomeId) {
-        return new GenomeResource(genomeId, emf.createEntityManager());
+        return new GenomeResource(genomeId);
     }
 }

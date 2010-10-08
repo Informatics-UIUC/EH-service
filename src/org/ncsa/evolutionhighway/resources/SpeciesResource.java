@@ -17,23 +17,22 @@ public class SpeciesResource {
     
     private final String _chrId;
     private final String _genomeId;
-    private final EntityManager _em;
 
-    public SpeciesResource(String chrId, String genomeId, EntityManager em) {
+    public SpeciesResource(String chrId, String genomeId) {
         _chrId = chrId;
         _genomeId = genomeId;
-        _em = em;
     }
 
     private List<String> getSpeciesFromDB() {
+        EntityManager em = GenomesResource.emf.createEntityManager();
         try {
-            return _em.createNamedQuery("Consensus.getSpecies", String.class)
+            return em.createNamedQuery("Consensus.getSpecies", String.class)
                 .setParameter("genomeId", _genomeId)
                 .setParameter("chrId", _chrId)
                 .getResultList();
         }
         finally {
-            _em.close();
+            em.close();
         }
     }
     
@@ -48,6 +47,6 @@ public class SpeciesResource {
     
     @Path("{speciesId}")
     public SingleSpeciesResource getChromosome(@PathParam("speciesId") String speciesId) {
-        return new SingleSpeciesResource(speciesId, _chrId, _genomeId, _em);
+        return new SingleSpeciesResource(speciesId, _chrId, _genomeId);
     }
 }

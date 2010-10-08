@@ -16,21 +16,20 @@ import org.ncsa.evolutionhighway.entities.Chromosome;
 public class ChromosomesResource {
     
     private final String _genomeId;
-    private final EntityManager _em;
 
-    public ChromosomesResource(String genomeId, EntityManager em) {
+    public ChromosomesResource(String genomeId) {
         _genomeId = genomeId;
-        _em = em;
     }
 
     private List<String> getChromosomesFromDB() {
+        EntityManager em = GenomesResource.emf.createEntityManager();
         try {
-            return _em.createNamedQuery("Consensus.getChromosomes", String.class)
+            return em.createNamedQuery("Consensus.getChromosomes", String.class)
                 .setParameter("genomeId", _genomeId)
                 .getResultList();
         }
         finally {
-            _em.close();
+            em.close();
         }
     }
     
@@ -45,6 +44,6 @@ public class ChromosomesResource {
     
     @Path("{chrId}")
     public ChromosomeResource getChromosome(@PathParam("chrId") String chrId) {
-        return new ChromosomeResource(chrId, _genomeId, _em);
+        return new ChromosomeResource(chrId, _genomeId);
     }
 }
