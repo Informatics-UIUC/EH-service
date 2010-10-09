@@ -49,14 +49,14 @@ public class Consensus implements Serializable {
     
     @Id 
     @Column(name="START_BP")
-    long startBp;
+    Long startBp;
     
     @Id 
     @Column(name="END_BP")
-    long endBp;
+    Long endBp;
  
     @Column(name="SIGN", insertable=false, updatable=false)
-    private long sign;
+    private Integer sign;
     
     public Consensus() {
     }
@@ -85,19 +85,19 @@ public class Consensus implements Serializable {
         this.species = species;
     }
 
-    public long getStartBp() {
+    public Long getStartBp() {
         return this.startBp;
     }
 
-    public void setStartBp(long startBp) {
+    public void setStartBp(Long startBp) {
         this.startBp = startBp;
     }
 
-    public long getEndBp() {
+    public Long getEndBp() {
         return this.endBp;
     }
 
-    public void setEndBp(long endBp) {
+    public void setEndBp(Long endBp) {
         this.endBp = endBp;
     }
 
@@ -109,11 +109,11 @@ public class Consensus implements Serializable {
 		this.speciesChr = speciesChr;
 	}
 	
-	public long getSign() {
+	public Integer getSign() {
 	    return this.sign;
 	}
 	
-	public void setSign(long sign) {
+	public void setSign(Integer sign) {
 	    this.sign = sign;
 	}
 }

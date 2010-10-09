@@ -8,8 +8,8 @@ public class ConsensusPK implements Serializable {
     private String refGen;
     private String refChr;
     private String species;
-    private long startBp;
-    private long endBp;
+    private Long startBp;
+    private Long endBp;
     
     public ConsensusPK() { }
 
@@ -37,19 +37,19 @@ public class ConsensusPK implements Serializable {
         this.species = species;
     }
 
-    public long getStartBp() {
+    public Long getStartBp() {
         return this.startBp;
     }
 
-    public void setStartBp(long startBp) {
+    public void setStartBp(Long startBp) {
         this.startBp = startBp;
     }
 
-    public long getEndBp() {
+    public Long getEndBp() {
         return this.endBp;
     }
 
-    public void setEndBp(long endBp) {
+    public void setEndBp(Long endBp) {
         this.endBp = endBp;
     }
     

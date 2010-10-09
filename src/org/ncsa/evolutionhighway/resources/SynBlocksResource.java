@@ -42,7 +42,7 @@ public class SynBlocksResource {
     public List<AncestorRegion> getSynBlocks() {
         List<AncestorRegion> ancestorRegions = new ArrayList<AncestorRegion>();
         for (Object[] synBlock : getSynBlocksFromDB())
-            ancestorRegions.add(new AncestorRegion((Long)synBlock[0], (Long)synBlock[1], (String)synBlock[2], (Long)synBlock[3]));
+            ancestorRegions.add(new AncestorRegion((Long)synBlock[0], (Long)synBlock[1], (String)synBlock[2], (Integer)synBlock[3]));
 
         return ancestorRegions;
     }

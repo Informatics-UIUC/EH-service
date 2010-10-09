@@ -4,14 +4,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class AncestorRegion {
-    public long Start;
-    public long End;
+    public Long Start;
+    public Long End;
     public String Label;
-    public long Sign;
+    public Integer Sign;
     
     public AncestorRegion() {}
     
-    public AncestorRegion(long start, long end, String label, long sign) {
+    public AncestorRegion(Long start, Long end, String label, Integer sign) {
         Start = start;
         End = end;
         Label = label;
