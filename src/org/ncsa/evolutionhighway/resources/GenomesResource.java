@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.ncsa.evolutionhighway.entities.Genome;
 
 @Path("/genomes/")
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Produces({ MediaType.APPLICATION_JSON })
 public class GenomesResource {
 
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("EHService");

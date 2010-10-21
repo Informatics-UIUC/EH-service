@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.ncsa.evolutionhighway.entities.ComparativeSpecies;
 
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Produces({ MediaType.APPLICATION_JSON })
 public class SpeciesResource {
     
     private final String _chrId;

@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.ncsa.evolutionhighway.entities.AncestorRegion;
 
-@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Produces({ MediaType.APPLICATION_JSON })
 public class SynBlocksResource {
 
     private final String _speciesId;
@@ -38,7 +38,6 @@ public class SynBlocksResource {
     }
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public List<AncestorRegion> getSynBlocks() {
         List<AncestorRegion> ancestorRegions = new ArrayList<AncestorRegion>();
         for (Object[] synBlock : getSynBlocksFromDB())
