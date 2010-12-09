@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @Table(name="CONSENSUS")
 @XmlRootElement
-@XmlType(propOrder = { "refGen", "refChr", "species", "speciesChr", "startBp", "endBp", "sign" })
+@XmlType(propOrder = { "refGen", "refChr", "species", "speciesChr", "startBp", "endBp", "sign", "modStart", "modEnd" })
 @NamedQueries({
         @NamedQuery(name = "Consensus.getGenomes", query = "SELECT DISTINCT c.refGen FROM Consensus c ORDER BY c.refGen"),
         @NamedQuery(name = "Consensus.getChromosomes", query = "SELECT DISTINCT c.refChr FROM Consensus c WHERE c.refGen = :genomeId"),
         @NamedQuery(name = "Consensus.getSpecies", query = "SELECT DISTINCT c.species FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId ORDER BY c.species"),
-        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.speciesChr, c.sign FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
+        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.speciesChr, c.sign, c.modStart, c.modEnd FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
 })
 public class Consensus implements Serializable {
 
@@ -57,6 +57,12 @@ public class Consensus implements Serializable {
  
     @Column(name="SIGN", insertable=false, updatable=false)
     private Integer sign;
+    
+    @Column(name="MODIFIED_ORDER_START", insertable=false, updatable=false)
+    private Long modStart;
+    
+    @Column(name="MODIFIED_ORDER_END", insertable=false, updatable=false)
+    private Long modEnd;
     
     public Consensus() {
     }
@@ -115,5 +121,21 @@ public class Consensus implements Serializable {
 	
 	public void setSign(Integer sign) {
 	    this.sign = sign;
+	}
+	
+	public Long getModStart() {
+	    return this.modStart;
+	}
+	
+	public void setModStart(Long modStart) {
+	    this.modStart = modStart;
+	}
+	
+	public Long getModEnd() {
+	    return this.modEnd;
+	}
+	
+	public void setModEnd(Long modEnd) {
+	    this.modEnd = modEnd;
 	}
 }
