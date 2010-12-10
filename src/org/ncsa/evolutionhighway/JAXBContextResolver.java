@@ -8,6 +8,7 @@ import org.ncsa.evolutionhighway.entities.AncestorRegion;
 import org.ncsa.evolutionhighway.entities.Chromosome;
 import org.ncsa.evolutionhighway.entities.ComparativeSpecies;
 import org.ncsa.evolutionhighway.entities.Genome;
+import org.ncsa.evolutionhighway.entities.SpeciesChrLengths;
 
 import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.api.json.JSONJAXBContext;
@@ -17,7 +18,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
 
     private final JAXBContext context;
     private final Class<?>[] types = {
-            Genome.class, Chromosome.class, ComparativeSpecies.class, AncestorRegion.class
+            Genome.class, Chromosome.class, ComparativeSpecies.class, AncestorRegion.class, SpeciesChrLengths.class
     };
 
     public JAXBContextResolver() throws Exception {

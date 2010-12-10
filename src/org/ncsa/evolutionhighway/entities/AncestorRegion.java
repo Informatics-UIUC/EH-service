@@ -9,16 +9,18 @@ public class AncestorRegion {
     public Long ModStart;
     public Long ModEnd;
     public String Label;
+    public String Chromosome;
     public Integer Sign;
     
     public AncestorRegion() {}
     
-    public AncestorRegion(Long start, Long end, String label, Integer sign, Long modStart, Long modEnd) {
+    public AncestorRegion(Long start, Long end, String label, Integer sign, Long modStart, Long modEnd, String chromosome) {
         Start = start;
         End = end;
         ModStart = modStart;
         ModEnd = modEnd;
         Label = label;
         Sign = sign;
+        Chromosome = chromosome;
     }
 }

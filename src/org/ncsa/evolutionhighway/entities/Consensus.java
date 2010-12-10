@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
         @NamedQuery(name = "Consensus.getGenomes", query = "SELECT DISTINCT c.refGen FROM Consensus c ORDER BY c.refGen"),
         @NamedQuery(name = "Consensus.getChromosomes", query = "SELECT DISTINCT c.refChr FROM Consensus c WHERE c.refGen = :genomeId"),
         @NamedQuery(name = "Consensus.getSpecies", query = "SELECT DISTINCT c.species FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId ORDER BY c.species"),
-        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.label, c.sign, c.modStart, c.modEnd FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
+        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.label, c.sign, c.modStart, c.modEnd, c.speciesChr FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
 })
 @NamedNativeQueries({
     @NamedNativeQuery(name = "Consensus.getLengths", query = "SELECT GREATEST(lengths.max_start, lengths.max_end) FROM (SELECT MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c WHERE c.COMP_GEN = ? AND c.COMP_CHR LIKE ?) lengths"),
