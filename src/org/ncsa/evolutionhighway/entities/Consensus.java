@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,14 +25,17 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @Table(name="CONSENSUS")
 @XmlRootElement
-@XmlType(propOrder = { "refGen", "refChr", "species", "speciesChr", "startBp", "endBp", "sign", "modStart", "modEnd" })
+@XmlType(propOrder = { "refGen", "refChr", "species", "speciesChr", "label", "startBp", "endBp", "sign", "modStart", "modEnd" })
 @NamedQueries({
         @NamedQuery(name = "Consensus.getGenomes", query = "SELECT DISTINCT c.refGen FROM Consensus c ORDER BY c.refGen"),
         @NamedQuery(name = "Consensus.getChromosomes", query = "SELECT DISTINCT c.refChr FROM Consensus c WHERE c.refGen = :genomeId"),
         @NamedQuery(name = "Consensus.getSpecies", query = "SELECT DISTINCT c.species FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId ORDER BY c.species"),
-        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.speciesChr, c.sign, c.modStart, c.modEnd FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
+        @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.label, c.sign, c.modStart, c.modEnd FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
 })
-@NamedNativeQuery(name = "Consensus.getLengths", query = "SELECT GREATEST(lengths.max_start, lengths.max_end) FROM (SELECT MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c WHERE c.COMP_GEN = ? AND c.COMP_CHR LIKE ?) lengths")
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "Consensus.getLengths", query = "SELECT GREATEST(lengths.max_start, lengths.max_end) FROM (SELECT MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c WHERE c.COMP_GEN = ? AND c.COMP_CHR LIKE ?) lengths"),
+    @NamedNativeQuery(name = "Consensus.getAllLengths", query = "SELECT s.COMP_GEN, s.COMP_CHR, GREATEST(s.max_start, s.max_end) AS LENGTH FROM (SELECT c.COMP_GEN, c.COMP_CHR, MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c GROUP BY c.COMP_GEN, c.COMP_CHR) s"),
+})
 public class Consensus implements Serializable {
 
     @Id 
@@ -48,6 +52,9 @@ public class Consensus implements Serializable {
 
     @Column(name="COMP_CHR", insertable=false, updatable=false)
     private String speciesChr;
+    
+    @Column(name="LABEL", insertable=false, updatable=false)
+    private String label;
     
     @Id 
     @Column(name="START_BP")
@@ -83,6 +90,14 @@ public class Consensus implements Serializable {
 
     public void setRefChr(String refChr) {
         this.refChr = refChr;
+    }
+    
+    public String getLabel() {
+        return this.label;
+    }
+    
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getSpecies() {
