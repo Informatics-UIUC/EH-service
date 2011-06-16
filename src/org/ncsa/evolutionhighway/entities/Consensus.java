@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The persistent class for the CONSENSUS database table.
- * 
+ *
  */
 
 @SuppressWarnings("serial")
@@ -28,54 +28,52 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = { "refGen", "refChr", "species", "speciesChr", "label", "startBp", "endBp", "sign", "modStart", "modEnd" })
 @NamedQueries({
         @NamedQuery(name = "Consensus.getGenomes", query = "SELECT DISTINCT c.refGen FROM Consensus c ORDER BY c.refGen"),
-        @NamedQuery(name = "Consensus.getChromosomes", query = "SELECT DISTINCT c.refChr FROM Consensus c WHERE c.refGen = :genomeId"),
         @NamedQuery(name = "Consensus.getSpecies", query = "SELECT DISTINCT c.species FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId ORDER BY c.species"),
         @NamedQuery(name = "Consensus.getSynBlocks", query = "SELECT c.startBp, c.endBp, c.label, c.sign, c.modStart, c.modEnd, c.speciesChr FROM Consensus c WHERE c.refGen = :genomeId AND c.refChr = :chrId AND c.species = :speciesId ORDER BY c.startBp"),
 })
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "Consensus.getLengths", query = "SELECT GREATEST(lengths.max_start, lengths.max_end) FROM (SELECT MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c WHERE c.COMP_GEN = ? AND c.COMP_CHR LIKE ?) lengths"),
-    @NamedNativeQuery(name = "Consensus.getAllLengths", query = "SELECT s.COMP_GEN, s.COMP_CHR, GREATEST(s.max_start, s.max_end) AS LENGTH FROM (SELECT c.COMP_GEN, c.COMP_CHR, MAX(c.MODIFIED_ORDER_START) AS max_start, MAX(c.MODIFIED_ORDER_END) AS max_end FROM CONSENSUS c GROUP BY c.COMP_GEN, c.COMP_CHR) s"),
+    @NamedNativeQuery(name = "Consensus.getChromosomes", query = "SELECT CHR, SIZE FROM (SELECT DISTINCT c.REF_GEN AS GEN, c.REF_CHR AS CHR FROM CONSENSUS c WHERE c.REF_GEN = ?) dc JOIN CHROMOSOME_SIZE s USING (GEN, CHR)"),
 })
 public class Consensus implements Serializable {
 
-    @Id 
+    @Id
     @Column(name="REF_GEN")
     String refGen;
-    
-    @Id 
+
+    @Id
     @Column(name="REF_CHR")
     String refChr;
-    
-    @Id 
+
+    @Id
     @Column(name="COMP_GEN")
     String species;
 
     @Column(name="COMP_CHR", insertable=false, updatable=false)
     private String speciesChr;
-    
+
     @Column(name="LABEL", insertable=false, updatable=false)
     private String label;
-    
-    @Id 
+
+    @Id
     @Column(name="START_BP")
     Long startBp;
-    
-    @Id 
+
+    @Id
     @Column(name="END_BP")
     Long endBp;
- 
+
     @Column(name="SIGN", insertable=false, updatable=false)
     private Integer sign;
-    
+
     @Column(name="MODIFIED_ORDER_START", insertable=false, updatable=false)
     private Long modStart;
-    
+
     @Column(name="MODIFIED_ORDER_END", insertable=false, updatable=false)
     private Long modEnd;
-    
+
     public Consensus() {
     }
-    
+
     public String getRefGen() {
         return this.refGen;
     }
@@ -91,11 +89,11 @@ public class Consensus implements Serializable {
     public void setRefChr(String refChr) {
         this.refChr = refChr;
     }
-    
+
     public String getLabel() {
         return this.label;
     }
-    
+
     public void setLabel(String label) {
         this.label = label;
     }
@@ -131,27 +129,27 @@ public class Consensus implements Serializable {
 	public void setSpeciesChr(String speciesChr) {
 		this.speciesChr = speciesChr;
 	}
-	
+
 	public Integer getSign() {
 	    return this.sign;
 	}
-	
+
 	public void setSign(Integer sign) {
 	    this.sign = sign;
 	}
-	
+
 	public Long getModStart() {
 	    return this.modStart;
 	}
-	
+
 	public void setModStart(Long modStart) {
 	    this.modStart = modStart;
 	}
-	
+
 	public Long getModEnd() {
 	    return this.modEnd;
 	}
-	
+
 	public void setModEnd(Long modEnd) {
 	    this.modEnd = modEnd;
 	}

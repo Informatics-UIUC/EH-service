@@ -5,9 +5,11 @@ import javax.ws.rs.ext.Provider;
 import javax.xml.bind.JAXBContext;
 
 import org.ncsa.evolutionhighway.entities.AncestorRegion;
+import org.ncsa.evolutionhighway.entities.CentromereRegion;
 import org.ncsa.evolutionhighway.entities.Chromosome;
 import org.ncsa.evolutionhighway.entities.ComparativeSpecies;
 import org.ncsa.evolutionhighway.entities.Genome;
+import org.ncsa.evolutionhighway.entities.HeterochromatinRegion;
 import org.ncsa.evolutionhighway.entities.SpeciesChrLengths;
 
 import com.sun.jersey.api.json.JSONConfiguration;
@@ -18,7 +20,8 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
 
     private final JAXBContext context;
     private final Class<?>[] types = {
-            Genome.class, Chromosome.class, ComparativeSpecies.class, AncestorRegion.class, SpeciesChrLengths.class
+            Genome.class, Chromosome.class, ComparativeSpecies.class, AncestorRegion.class, SpeciesChrLengths.class,
+            CentromereRegion.class, HeterochromatinRegion.class
     };
 
     public JAXBContextResolver() throws Exception {
@@ -31,7 +34,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
                 return context;
             }
         }
-        
+
         return null;
     }
 }

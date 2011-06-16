@@ -4,15 +4,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class SpeciesChrLengths {
-    
-    public String Species;
+
     public String Chromosome;
     public Long Length;
-    
+
     public SpeciesChrLengths() {}
-    
-    public SpeciesChrLengths(String species, String chromosome, Long length) {
-        Species = species;
+
+    public SpeciesChrLengths(String chromosome, Long length) {
         Chromosome = chromosome;
         Length = length;
     }

@@ -2,9 +2,11 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="EHService" transaction-type="RESOURCE_LOCAL">
 		<class>org.ncsa.evolutionhighway.entities.Consensus</class>
+		<class>org.ncsa.evolutionhighway.entities.ChromosomeSize</class>
+		<class>org.ncsa.evolutionhighway.entities.RefGenInfo</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/EvolutionHighway"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip021.ncsa.uiuc.edu:3306/TA"/>
 <!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/EH_Rachel"/>-->
 <!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/nature08645"/>-->
 <!--			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip027.ncsa.uiuc.edu:3306/transcriptome"/>-->
