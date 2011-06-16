@@ -4,6 +4,7 @@
 		<class>org.ncsa.evolutionhighway.entities.Consensus</class>
 		<class>org.ncsa.evolutionhighway.entities.ChromosomeSize</class>
 		<class>org.ncsa.evolutionhighway.entities.RefGenInfo</class>
+		<class>org.ncsa.evolutionhighway.entities.FeatureDensity</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://leovip021.ncsa.uiuc.edu:3306/TA"/>
