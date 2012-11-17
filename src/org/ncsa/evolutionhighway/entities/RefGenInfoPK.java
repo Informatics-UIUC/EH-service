@@ -1,6 +1,8 @@
 package org.ncsa.evolutionhighway.entities;
 
-public class RefGenInfoPK {
+import java.io.Serializable;
+
+public class RefGenInfoPK implements Serializable {
     private String refGen;
     private String refChr;
     private Long startBp;

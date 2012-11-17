@@ -19,7 +19,7 @@ import org.ncsa.evolutionhighway.entities.Genome;
 public class GenomesResource {
 
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("EHService");
-    
+
     private List<String> getGenomesFromDB() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -35,7 +35,7 @@ public class GenomesResource {
         List<Genome> genomes = new ArrayList<Genome>();
         for (String refGen : getGenomesFromDB())
             genomes.add(new Genome(refGen));
-        
+
         return genomes;
     }
 

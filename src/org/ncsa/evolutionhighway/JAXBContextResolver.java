@@ -5,6 +5,7 @@ import javax.ws.rs.ext.Provider;
 import javax.xml.bind.JAXBContext;
 
 import org.ncsa.evolutionhighway.entities.AncestorRegion;
+import org.ncsa.evolutionhighway.entities.BreakpointRegion;
 import org.ncsa.evolutionhighway.entities.CentromereRegion;
 import org.ncsa.evolutionhighway.entities.Chromosome;
 import org.ncsa.evolutionhighway.entities.ComparativeSpecies;
@@ -23,7 +24,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
     private final JAXBContext context;
     private final Class<?>[] types = {
             Genome.class, Chromosome.class, ComparativeSpecies.class, AncestorRegion.class, SpeciesChrLengths.class,
-            CentromereRegion.class, HeterochromatinRegion.class, Feature.class, DensityObject.class
+            CentromereRegion.class, HeterochromatinRegion.class, Feature.class, DensityObject.class, BreakpointRegion.class
     };
 
     public JAXBContextResolver() throws Exception {
